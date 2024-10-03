@@ -63,4 +63,23 @@ class PhoneBookTest {
 
         assertEquals(expectedName, resultName);
     }
+
+    @Test
+    void findByNameTest() {
+
+        try {
+            phoneBook.add("ddd", "4444444444");
+            phoneBook.add("fff", "6666666666");
+            phoneBook.add("eee", "5555555555");
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        var expectedNumber = "6666666666";
+        var name = "fff";
+
+        var resultNumber = phoneBook.findByName(name);
+
+        assertEquals(expectedNumber, resultNumber);
+    }
 }
