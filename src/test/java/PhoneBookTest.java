@@ -45,4 +45,22 @@ class PhoneBookTest {
             assertEquals("invalid number", e.getMessage());
         }
     }
+
+    @Test
+    void findByNumberTest() {
+
+        try {
+            phoneBook.add("aaa", "1111111111");
+            phoneBook.add("ccc", "3333333333");
+            phoneBook.add("bbb", "2222222222");
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        var expectedName = "bbb";
+        var number = "2222222222";
+
+        var resultName = phoneBook.findByNumber(number);
+
+        assertEquals(expectedName, resultName);
+    }
 }

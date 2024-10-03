@@ -24,4 +24,8 @@ public class PhoneBook {
 
         return CONTACTS.keySet().size();
     }
+
+    public String findByNumber(String number) {
+        return null;
+    }
 }
