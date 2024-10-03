@@ -47,6 +47,14 @@ public class PhoneBook {
     }
 
     public String printAllNames() {
-        return null;
+
+        var namesBuilder = new StringBuilder();
+
+        for (String name : CONTACTS.keySet()) {
+            System.out.println(name);
+            namesBuilder.append(name).append("\n");
+        }
+
+        return namesBuilder.toString();
     }
 }
