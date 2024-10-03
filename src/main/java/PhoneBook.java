@@ -38,6 +38,11 @@ public class PhoneBook {
     }
 
     public String findByName(String name) {
-        return null;
+
+        String number;
+
+        number = CONTACTS.get(name);
+
+        return number;
     }
 }
