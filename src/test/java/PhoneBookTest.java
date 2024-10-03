@@ -82,4 +82,21 @@ class PhoneBookTest {
 
         assertEquals(expectedNumber, resultNumber);
     }
+
+    @Test
+    void printAllNamesTest() {
+
+        try {
+            phoneBook.add("ggg", "7777777777");
+            phoneBook.add("jjj", "9999999999");
+            phoneBook.add("hhh", "8888888888");
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        var expectedNames = "ggg\nhhh\njjj\n";
+
+        var resultNames = phoneBook.printAllNames();
+
+        assertEquals(expectedNames, resultNames);
+    }
 }
