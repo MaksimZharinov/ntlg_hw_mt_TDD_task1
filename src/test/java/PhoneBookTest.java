@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PhoneBookTest {
 
@@ -44,6 +44,5 @@ class PhoneBookTest {
         } catch (Exception e) {
             assertEquals("invalid number", e.getMessage());
         }
-
     }
 }

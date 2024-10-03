@@ -8,7 +8,20 @@ public class PhoneBook {
         CONTACTS = new TreeMap<>();
     }
 
-    public int add(String name, String number) {
-        return 0;
+    public int add(String name, String number) throws Exception {
+
+        try {
+            Long.parseLong(number);
+        } catch (NumberFormatException e) {
+            throw new Exception("invalid number");
+        }
+
+        if (CONTACTS.containsKey(name)) {
+            return -1;
+        }
+
+        CONTACTS.put(name, number);
+
+        return CONTACTS.keySet().size();
     }
 }
