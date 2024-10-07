@@ -1,61 +1,65 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PhoneBookTest {
 
     PhoneBook phoneBook = new PhoneBook();
+    final int CHECK_NAME = -1;
+    int expectedCount = 0;
 
     @Test
-    void addTest() {
+    void addTest1() throws Exception {
 
-        int resultCount;
-        int expectedCount = 0;
-        final int CHECK_NAME = -1;
+        var resultCount = phoneBook.add("testName", "1234567890");
+        expectedCount = expectedCount + 1;
 
-        try {
-            resultCount = phoneBook.add("testName", "1234567890");
-            expectedCount = expectedCount + 1;
-
-            assertEquals(expectedCount, resultCount);
-        } catch (Exception t1) {
-            System.out.println("testAddFirst_err");
-        }
-
-        try {
-            resultCount = phoneBook.add("newTestName", "1234567890");
-            expectedCount = expectedCount + 1;
-
-            assertEquals(expectedCount, resultCount);
-        } catch (Exception t2) {
-            System.out.println("testAddNext_err");
-        }
-
-        try {
-            int testEntryName = phoneBook.add("testName", "1234567890");
-
-            assertEquals(CHECK_NAME, testEntryName);
-        } catch (Exception t3) {
-            System.out.println("testName_err");
-        }
-
-        try {
-            phoneBook.add("testNumberName", "invalidNumber");
-        } catch (Exception e) {
-            assertEquals("invalid number", e.getMessage());
-        }
+        assertEquals(expectedCount, resultCount);
     }
 
     @Test
-    void findByNumberTest() {
+    void addTest2() throws Exception {
 
-        try {
-            phoneBook.add("aaa", "1111111111");
-            phoneBook.add("ccc", "3333333333");
-            phoneBook.add("bbb", "2222222222");
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
+        var resultCount = phoneBook.add("newTestName", "1234567890");
+        expectedCount = expectedCount + 1;
+
+        assertEquals(expectedCount, resultCount);
+    }
+
+    @Test
+    void addTest3() throws Exception {
+
+        phoneBook.add("testName3", "1234567890");
+        expectedCount = expectedCount + 1;
+
+
+        int testEntryName = phoneBook.add("testName3", "1234567890");
+        expectedCount = expectedCount + 1;
+
+
+        assertEquals(CHECK_NAME, testEntryName);
+    }
+
+    @Test
+    void addTest4() throws Exception {
+
+        Throwable exception = assertThrows(Exception.class, () ->
+                phoneBook.add("testNumberName", "invalidNumber"));
+
+        assertEquals("invalid number", exception.getMessage());
+    }
+
+    @Test
+    void findByNumberTest() throws Exception {
+
+        phoneBook.add("aaa", "1111111111");
+        expectedCount = expectedCount + 1;
+        phoneBook.add("ccc", "3333333333");
+        expectedCount = expectedCount + 1;
+        phoneBook.add("bbb", "2222222222");
+        expectedCount = expectedCount + 1;
+
         var expectedName = "bbb";
         var number = "2222222222";
 
@@ -65,15 +69,14 @@ class PhoneBookTest {
     }
 
     @Test
-    void findByNameTest() {
+    void findByNameTest() throws Exception {
 
-        try {
-            phoneBook.add("ddd", "4444444444");
-            phoneBook.add("fff", "6666666666");
-            phoneBook.add("eee", "5555555555");
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
+        phoneBook.add("ddd", "4444444444");
+        expectedCount = expectedCount + 1;
+        phoneBook.add("fff", "6666666666");
+        expectedCount = expectedCount + 1;
+        phoneBook.add("eee", "5555555555");
+        expectedCount = expectedCount + 1;
 
         var expectedNumber = "6666666666";
         var name = "fff";
@@ -84,15 +87,15 @@ class PhoneBookTest {
     }
 
     @Test
-    void printAllNamesTest() {
+    void printAllNamesTest() throws Exception {
 
-        try {
-            phoneBook.add("ggg", "7777777777");
-            phoneBook.add("jjj", "9999999999");
-            phoneBook.add("hhh", "8888888888");
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
+        phoneBook.add("ggg", "7777777777");
+        expectedCount = expectedCount + 1;
+        phoneBook.add("jjj", "9999999999");
+        expectedCount = expectedCount + 1;
+        phoneBook.add("hhh", "8888888888");
+        expectedCount = expectedCount + 1;
+
         var expectedNames = "ggg\nhhh\njjj\n";
 
         var resultNames = phoneBook.printAllNames();
